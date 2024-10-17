@@ -30,5 +30,5 @@ class LinearRegression(Model):
 
             # Update parameters using optimizer
             self.params = optimizer.update(self.params, gradient_A)  # Update weights
-            self.bias -= optimizer.learning_rate * gradient_B  # Update bias
+            self.bias = optimizer.update(self.bias, gradient_B)
 
