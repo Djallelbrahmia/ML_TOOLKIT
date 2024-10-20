@@ -13,16 +13,3 @@ class Momentum(Optimizer):
         self.velocity = self.momentum * self.velocity + (1 - self.momentum) * gradients
         params -= self.learning_rate * self.velocity
         return params
-    def train(self, model, data, labels, num_epochs,):
-        num_samples = len(data)
-
-        for epoch in range(num_epochs):
-            indices = np.random.permutation(num_samples)
-            data = data[indices]
-            labels = labels[indices]
-
-            for i in range(0, num_samples, self.batch_size):
-                batch_data = data[i:i + self.batch_size]
-                batch_labels = labels[i:i + self.batch_size]
-                gradients = model.compute_gradients(batch_data, batch_labels) 
-                model.params = self.update(model.params, gradients)

@@ -27,6 +27,3 @@ class Optimizer(ABC):
         """
         pass
 
-    @abstractmethod
-    def train(self, model, data, labels, num_epochs):
-        pass  # Abstract method, must be implemented by subclasses

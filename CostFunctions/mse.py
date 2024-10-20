@@ -12,7 +12,7 @@ class MeanSquaredError(CostFunction):
         """
         return np.mean((predictions - y) ** 2)
 
-    def compute_gradients(self, predictions, targets,X,model):
+    def compute_gradients(self, predictions, targets,X,model,activation_function=None):
         """
         Compute the gradients of the Mean Squared Error.
         
@@ -35,6 +35,25 @@ class MeanSquaredError(CostFunction):
                 gradient_B = (2 / n) * np.sum(errors)  # Gradient w.r.t. bias B
 
                 return gradient_A, gradient_B
+            case "LC": 
+                n = len(targets)
+                errors = predictions - targets
+
+                if activation_function == "sigmoid":
+                    # Derivative of the sigmoid function
+                    sigmoid_derivative = predictions * (1 - predictions)
+                    errors *= sigmoid_derivative
+
+                    # Gradient for weights (A)
+                    gradient_A = (2 / n) * np.dot(X.T, errors)
+
+                    # Gradient for bias (B)
+                    gradient_B = (2 / n) * np.sum(errors)
+
+                    return gradient_A, gradient_B
+                else:                    
+                    raise NotImplementedError("Activation function must be provided for the Linear classifier model.")
+
             case _: 
                 raise NotImplementedError("This method should receive appropriate model name .")
 

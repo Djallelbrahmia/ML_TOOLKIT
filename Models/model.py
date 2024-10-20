@@ -16,6 +16,15 @@ class Model(ABC):
         """
         pass
 
+    @abstractmethod
+    def compute_gradients(self, X, y):
+        """
+        Compute gradients for model parameters.
+        :param X: Input features
+        :param y: True labels
+        :return: Gradients for the model parameters
+        """
+        pass
 
     @abstractmethod
     def fit(self, X, y, optimizer, num_epochs):
