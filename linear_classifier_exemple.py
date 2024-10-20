@@ -23,7 +23,7 @@ model = LinearClassifier(cost_function=cost_function, activation_function="sigmo
 seed = 42
 
 # Fit the model
-model.fit(X, y, num_epochs=10, batch_size=32, learning_rate=0.01, seed=seed, optimizer="sgd")
+model.fit(X, y, num_epochs=10, batch_size=32, seed=seed, optimizer="sgd")
 
 # Make predictions on the training data
 predictions = model.predict(X)

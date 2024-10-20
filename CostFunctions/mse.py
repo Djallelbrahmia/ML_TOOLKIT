@@ -35,6 +35,17 @@ class MeanSquaredError(CostFunction):
                 gradient_B = (2 / n) * np.sum(errors)  # Gradient w.r.t. bias B
 
                 return gradient_A, gradient_B
+            case "NLR" :
+                n = len(targets)  # Number of samples
+                errors = predictions - targets  # Error term
+
+                # Gradient for weights A
+                gradient_A = (2 / n) * np.dot(X.T, errors)  # Gradient w.r.t. weights A
+
+                # Gradient for bias B
+                gradient_B = (2 / n) * np.sum(errors)  # Gradient w.r.t. bias B
+
+                return gradient_A, gradient_B
             case "LC": 
                 n = len(targets)
                 errors = predictions - targets
