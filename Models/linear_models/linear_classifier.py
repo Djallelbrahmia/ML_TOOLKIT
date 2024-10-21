@@ -21,21 +21,18 @@ class LinearClassifier(Model):
 
     def compute_gradients(self, X, y):
         """ Compute gradients for the model parameters. """
-        predictions = self.activation(np.dot(X, self.params) + self.bias)
-        gradient_A, gradient_B = self.cost_function.compute_gradients(predictions, y, X, model="LC", 
+        z = np.dot(X, self.params) + self.bias
+        activated_output = self.activation(z)
+
+        gradient_A, gradient_B = self.cost_function.compute_gradients(activated_output, y, X, model="LC", 
                                                                       activation_function=self.activation_function)
         return gradient_A, gradient_B
 
     def predict(self, X):
         """ Predict the class labels based on the input features. """
         z = np.dot(X, self.params) + self.bias
-        activated_output = self.activation(z)
+        return self.activation(z)
         
-        if self.activation_function == "th":
-            return activated_output.astype(int)  # For threshold, return 0 or 1
-        elif self.activation_function == "sigmoid":
-            return (activated_output > 0.5).astype(int)  # For sigmoid, return binary classification
-
     def fit(self, X, y, num_epochs, batch_size, seed=None, optimizer="sgd", **kwargs):
         optimizer_factory = OptimizerFactory()
         slope_optimizer = optimizer_factory.create_optimizer(optimizer, **kwargs)
