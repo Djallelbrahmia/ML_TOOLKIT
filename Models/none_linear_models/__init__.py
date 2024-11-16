@@ -4,7 +4,8 @@ from .knn_classification import KNNClassifier
 from .knn_regressor import KNNRegressor
 from .decision_tree_classification import DTClassification
 from .decision_tree_regression import DTRegression
-
+from .multinomial_naive_bayes import MultinomialNB
+from .gaussian_naive_bayes import GaussianNB 
 __all__ = [
     'NoneLinearRegression'
     'NoneLinearClassifier'
@@ -12,4 +13,6 @@ __all__ = [
     'KNNRegressor'
     'DTClassification'
     'DTRegression'
+    'MultinomialNB'
+    'GaussianNB'
 ]

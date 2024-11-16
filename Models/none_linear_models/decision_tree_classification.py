@@ -2,9 +2,10 @@ import numpy as np
 from Models.utils.tree_data_structure import TreeNode
 from Models.utils.criterion import Criterion
 from Models.utils.split_dataaset import split_dataset
+from Models.model import Model
 
 
-class DTClassification :
+class DTClassification(Model) :
     def __init__(self, max_depth=None, min_samples_split=2, criterion='gini'):
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
@@ -98,3 +99,12 @@ class DTClassification :
         """
         predictions = [self._traverse_tree(x, self.root) for x in X]
         return np.array(predictions)
+    def compute_gradients(self, X, y):
+        """
+         Decision tree n'utilise pas de gradients, cette méthode est incluse
+        pour la compatibilité avec la classe Model
+        """
+        raise NotImplementedError("Decision tree n'utilise pas de gradients")
+
+
+    
