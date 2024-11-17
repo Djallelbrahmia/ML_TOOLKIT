@@ -6,6 +6,7 @@ from .decision_tree_classification import DTClassification
 from .decision_tree_regression import DTRegression
 from .multinomial_naive_bayes import MultinomialNB
 from .gaussian_naive_bayes import GaussianNB 
+from .svm import SVM
 __all__ = [
     'NoneLinearRegression'
     'NoneLinearClassifier'
@@ -15,4 +16,5 @@ __all__ = [
     'DTRegression'
     'MultinomialNB'
     'GaussianNB'
+    'SVM'
 ]
